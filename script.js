@@ -23,8 +23,24 @@ goomba.addEventListener("click", handleSearch);
 
 function handleSearch() {
     let poki = document.getElementById("pokemonName").value.toLowerCase();
+    let lobo = document.getElementById("errorMessage");
+    let sprite = document.getElementById("pokemonSprite");
+
+    lobo.textContent = "";
+
+    lobo.textContent = "";
+    sprite.style.display = "none";
+
+    let trimmed = poki.trim(); 
+     if (trimmed === "") {
+        lobo.textContent = "Please enter a Pokémon name.";
+        return;
+    } if (!/^[a-zA-Z-]+$/.test(trimmed)) {
+        lobo.textContent = "Only letters and hyphens are allowed.";
+        return;
+    } if (trimmed.length > 30) {
+        lobo.textContent = "Name must be under 30 characters.";
+        return;
+    };
     fetchData();
-    if(poki.trim() === "") {
-      throw new Error("Please enter a name");
-    }
 }
