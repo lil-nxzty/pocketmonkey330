@@ -18,9 +18,13 @@ async function fetchData() {
     console.error(error);
   }
 }
+let goomba = document.getElementById("buttion");
+goomba.addEventListener("click", handleSearch);
 
 function handleSearch() {
-    let poki = getElementById("pokemonName").value;
-    fetchData(poki);
-    
+    let poki = document.getElementById("pokemonName").value.toLowerCase();
+    fetchData();
+    if(poki.trim() === "") {
+      throw new Error("Please enter a name");
+    }
 }
